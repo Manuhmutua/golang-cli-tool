@@ -59,5 +59,5 @@ func addFloat(args []string) {
 		sum = sum + ftemp
 	}
 
-	fmt.Printf("Sum of floating numbers %s is %f", args, sum)
+	fmt.Printf("Sum of floating numbers %s is %f \n", args, sum)
 }
