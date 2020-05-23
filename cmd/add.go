@@ -45,7 +45,7 @@ func addInt(args []string) {
 		sum = sum + itemp
 	}
 
-	fmt.Printf("Addition of numbers %s is %d", args, sum)
+	fmt.Printf("Addition of numbers %s is %d \n", args, sum)
 }
 
 func addFloat(args []string) {
