@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"github.com/spf13/cobra"
 	"os"
+	"os/exec"
+	"path/filepath"
+	"strings"
 )
 
 // addCmd represents the add command
@@ -35,10 +38,59 @@ func init() {
 
 func addFile(args []string) {
 
-	if len(args) > 1 {
-		fmt.Println("Only one argument is allowed - The file path")
+	if len(args) == 1 {
+
+		_ = os.Setenv("FILE", args[0])
+
+		dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
+
+		cmd := exec.Command(dir + "/cmd/check_file.sh")
+		stdout, err := cmd.Output()
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
+
+		if string(stdout) == "does not exist\n" {
+			fmt.Println("The file does not exist - please enter a valid file path")
+			os.Exit(1)
+		}
+
+		cmd = exec.Command("cat", args[0])
+		stdout, err = cmd.Output()
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
+
+		for _, element := range strings.Split(string(stdout), "\n") {
+			var variable = strings.Replace(strings.Split(element, "=")[0], " ", "", -1)
+			var value = strings.Replace(strings.Split(element, "=")[1], " ", "", -1)
+			if variable == "AWS_ACCESS_KEY_ID" {
+				_ = os.Setenv("AWS_ACCESS_KEY_ID", value)
+			} else if variable == "AWS_SECRET_ACCESS_KEY" {
+				_ = os.Setenv("AWS_SECRET_ACCESS_KEY", value)
+			} else if variable == "AWS_REGION" {
+				_ = os.Setenv("AWS_REGION", value)
+			}
+		}
+
+		cmd = exec.Command(dir + "/cmd/aws_configure.sh")
+		stdout, err = cmd.Output()
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
+
+		fmt.Println(string(stdout))
 		os.Exit(1)
+
 	}
 
-	fmt.Printf("File location is: %s \n", args)
+	fmt.Println("Only one argument is allowed - The file path")
+	os.Exit(1)
 }
