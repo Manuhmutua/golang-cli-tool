@@ -20,7 +20,7 @@ var listEc2Cmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		_cmd := exec.Command(dir + "/cmd/list_ec2.sh")
+		_cmd := exec.Command(dir + "/cmd/bash/list_ec2.sh")
 		stdout, err := _cmd.Output()
 		if err != nil {
 			if err.Error() == "exit status 253" {

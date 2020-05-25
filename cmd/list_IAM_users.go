@@ -20,7 +20,7 @@ var listIAMCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		_cmd := exec.Command(dir + "/cmd/list_users.sh")
+		_cmd := exec.Command(dir + "/cmd/bash/list_users.sh")
 		stdout, err := _cmd.Output()
 		if err != nil {
 			if err.Error() == "exit status 253" {

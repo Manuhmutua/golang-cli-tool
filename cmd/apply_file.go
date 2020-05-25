@@ -44,7 +44,7 @@ func addFile(args []string) {
 			os.Exit(1)
 		}
 
-		cmd := exec.Command(dir + "/cmd/check_file.sh")
+		cmd := exec.Command(dir + "/cmd/bash/check_file.sh")
 		stdout, err := cmd.Output()
 		if err != nil {
 			fmt.Println(err.Error())
@@ -75,7 +75,7 @@ func addFile(args []string) {
 			}
 		}
 
-		cmd = exec.Command(dir + "/cmd/aws_configure.sh")
+		cmd = exec.Command(dir + "/cmd/bash/aws_configure.sh")
 		stdout, err = cmd.Output()
 		if err != nil {
 			fmt.Println(err.Error())
