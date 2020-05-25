@@ -9,7 +9,6 @@ import (
 	"strings"
 )
 
-// addCmd represents the add command
 var applyCmd = &cobra.Command{
 	Use:   "apply",
 	Short: "Apply AWS config files",
