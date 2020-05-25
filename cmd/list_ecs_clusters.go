@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 )
 
+// This command lists all the ecs clusters
 var listEcsClusters = &cobra.Command{
 	Use:   "ecs",
 	Short: "List all ecs clusters using this command",

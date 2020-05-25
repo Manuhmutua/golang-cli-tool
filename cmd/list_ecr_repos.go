@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 )
 
+// This command list all the ecr repos
 var listEcrRepos = &cobra.Command{
 	Use:   "ecr",
 	Short: "List all ecr repos using this command",

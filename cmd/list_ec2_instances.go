@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 )
 
+// This command all ec2 instances
 var listEc2Cmd = &cobra.Command{
 	Use:   "ec2",
 	Short: "List all ec2 instances using this command",

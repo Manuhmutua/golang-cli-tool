@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+// This is the apply file command
 var applyCmd = &cobra.Command{
 	Use:   "apply",
 	Short: "Apply AWS config files",
@@ -16,6 +17,7 @@ var applyCmd = &cobra.Command{
 cli-tool-golang apply -f <Absolute Path of the configuration file>.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
+		// Here we check if the user has used the --file/ -f command
 		fstatus, _ := cmd.Flags().GetBool("file")
 
 		if fstatus {
@@ -29,11 +31,14 @@ cli-tool-golang apply -f <Absolute Path of the configuration file>.`,
 
 func init() {
 	rootCmd.AddCommand(applyCmd)
+	// here we set the flag to accept the configuration file path
 	applyCmd.Flags().BoolP("file", "f", false, "Add config file")
 }
 
+// Here we validate file location and set file contents as the aws configure credentials
 func addFile(args []string) {
 
+	// Here we restrict using only one argument before/after the -f/--file flag
 	if len(args) == 1 {
 
 		_ = os.Setenv("FILE", args[0])
@@ -44,6 +49,7 @@ func addFile(args []string) {
 			os.Exit(1)
 		}
 
+		// Here we check if a file exists in the path provided by user
 		cmd := exec.Command(dir + "/cmd/bash/check_file.sh")
 		stdout, err := cmd.Output()
 		if err != nil {
@@ -63,6 +69,7 @@ func addFile(args []string) {
 			os.Exit(1)
 		}
 
+		// Here we use the contents of the file to configure aws CLI
 		for _, element := range strings.Split(string(stdout), "\n") {
 			var variable = strings.Replace(strings.Split(element, "=")[0], " ", "", -1)
 			var value = strings.Replace(strings.Split(element, "=")[1], " ", "", -1)

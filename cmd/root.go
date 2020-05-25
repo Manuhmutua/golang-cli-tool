@@ -12,6 +12,7 @@ import (
 
 var cfgFile string
 
+// This is the root command
 var rootCmd = &cobra.Command{
 	Use:   "cli-tool-golang",
 	Short: "Lists IAM users, EC2 instances, RDS instances, S3 buckets, ECR repos & ECS clusters",

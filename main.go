@@ -1,7 +1,7 @@
 package main
 
 import (
-	"cli-tool-golang/cmd"
+	"github.com/Manuhmutua/golang-cli-tool/cmd"
 )
 
 func main() {

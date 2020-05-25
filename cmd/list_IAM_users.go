@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 )
 
+// This command lists all the IAM users
 var listIAMCmd = &cobra.Command{
 	Use:   "users",
 	Short: "List all IAM users using this command",

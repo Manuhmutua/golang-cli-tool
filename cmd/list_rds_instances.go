@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 )
 
+// This command lists all the RDS instances
 var listRdsInstances = &cobra.Command{
 	Use:   "rds",
 	Short: "List all RDS instances using this command",

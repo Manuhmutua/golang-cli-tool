@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 )
 
+// This command lists all the S3 buckets
 var listS3Buckets = &cobra.Command{
 	Use:   "s3",
 	Short: "List all s3 buckets using this command",

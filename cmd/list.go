@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// addCmd represents the add command
+// this is the base command for listing resources
 var listCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List resources parent command",
