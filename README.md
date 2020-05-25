@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Manuhmutua/golang-cli-tool.svg?branch=master)](https://travis-ci.org/Manuhmutua/golang-cli-tool)
 
-The question required me to create a CLI that allows the user to list all the resources below:
+The question required me to create a CLI application that allows the user to list all the resources below:
 - IAM users
 - EC2 instances
 - RDS instances
